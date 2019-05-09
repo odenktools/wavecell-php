@@ -237,7 +237,68 @@ if ($code === 400) {
 
 See for detail [Mobile Verification - Code validation](https://developer.wavecell.com/v1/api-documentation/verify-code-validation)
 
-TODO CODE DOCUMENTATION.
+**Sample (With Throwing)**
+
+```php
+try {
+    \Wavecell\Config::$timeZone = 'Asia/Jakarta';
+    \Wavecell\Config::$country = 'ID';
+    \Wavecell\Config::$resendInterval = 120;
+    \Wavecell\Config::$otpCodeValidity = 600;
+    \Wavecell\Config::$otpCodeLength = 6;
+    \Wavecell\Config::$smsExpireInMinutes = 60;
+    \Wavecell\Config::$subAccountId = 'YOUR_SUB_ACCOUNT_ID';
+    \Wavecell\Config::$secretKey = 'YOUR_SECRET_KEY';
+    \Wavecell\Config::$smsFrom = 'YOUR_APP_SETTING';
+
+    $sms = new \Wavecell\Sms();
+    $response = $sms->verifyOtpSms('683cc08a-bf70-e911-8145-02d9baaa9e6f', '908273');
+    $body = (string)$response->getBody();
+    $code = (int)$response->getStatusCode();
+    echo $content->resourceUri . '<br/>';
+    echo $content->uid . '<br/>';
+    echo $content->msisdn . '<br/>';
+    echo $content->status . '<br/>';
+    echo $content->attempt. '<br/>';
+    echo $content->expiresAt. '<br/>';
+} catch (\Wavecell\HttpException $exception) {
+    echo $exception->getMessage();
+}
+```
+
+**Sample (Without Throwing)**
+
+```php
+\Wavecell\Config::$timeZone = 'Asia/Jakarta';
+\Wavecell\Config::$country = 'ID';
+\Wavecell\Config::$resendInterval = 120;
+\Wavecell\Config::$otpCodeValidity = 600;
+\Wavecell\Config::$otpCodeLength = 6;
+\Wavecell\Config::$smsExpireInMinutes = 60;
+\Wavecell\Config::$subAccountId = 'YOUR_SUB_ACCOUNT_ID';
+\Wavecell\Config::$secretKey = 'YOUR_SECRET_KEY';
+\Wavecell\Config::$smsFrom = 'YOUR_APP_SETTING';
+
+$sms = new \Wavecell\Sms();
+$response = $sms->verifyOtpSms('683cc08a-bf70-e911-8145-02d9baaa9e6f', '908273', false);
+$body = (string)$response->getBody();
+$code = (int)$response->getStatusCode();
+if ($code === 400) {
+    echo "BAD REQUEST";
+} else if ($code === 401) {
+    echo "Unauthorized ";
+} else if ($code === 404) {
+    echo "Not Found";
+} else if ($code === 200) {
+    $content = json_decode($body);
+    echo $content->resourceUri . '<br/>';
+    echo $content->uid . '<br/>';
+    echo $content->msisdn . '<br/>';
+    echo $content->status . '<br/>';
+    echo $content->attempt. '<br/>';
+    echo $content->expiresAt. '<br/>';
+}
+```
 
 # Test
 
