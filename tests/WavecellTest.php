@@ -31,7 +31,7 @@ class WavecellTest extends PHPUnit_Framework_TestCase
      */
     public function testSubAccountId()
     {
-        $this->assertEquals(WAVECELL_SUB_ACCOUNT_ID, 'VALUE_SUB_ACCOUNT_ID');
+        $this->assertEquals(getenv('WAVECELL_SUB_ACCOUNT_ID'), 'VALUE_SUB_ACCOUNT_ID');
     }
 
     /**
@@ -39,7 +39,7 @@ class WavecellTest extends PHPUnit_Framework_TestCase
      */
     public function testSecretKey()
     {
-        $this->assertEquals(WAVECELL_SECRET_KEY, 'VALUE_SECRET_KEY');
+        $this->assertEquals(getenv('WAVECELL_SECRET_KEY'), 'VALUE_SECRET_KEY');
     }
 
     /**
@@ -77,9 +77,9 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testSingleSmsThrow()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
 
         $sms = new \Wavecell\Sms();
         $response = $sms->sendSingleSms('+6289680000000', 'Hallo World', 'AUTO', true);
@@ -92,9 +92,9 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testSingleSms()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
 
         $sms = new \Wavecell\Sms();
         $response = $sms->sendSingleSms('+6289680000000', 'Hallo World', '', false);
@@ -115,9 +115,9 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testSingleSmsEncodingThrow()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
 
         $sms = new \Wavecell\Sms();
         $response = $sms->sendSingleSms('+6289680000000', 'Hallo World', 'AUTO');
@@ -130,9 +130,9 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testSingleSmsEncoding()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
 
         $sms = new \Wavecell\Sms();
         $response = $sms->sendSingleSms('+6289680000000', 'Hallo World', 'AUTO', false);
@@ -152,10 +152,10 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testSingleSmsExpired()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
-        \Wavecell\Config::$smsExpireInMinutes = WAVECELL_SMS_EXPIRED_IN_MINUTES;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
+        \Wavecell\Config::$smsExpireInMinutes = getenv('WAVECELL_SMS_EXPIRED_IN_MINUTES');
 
         $sms = new \Wavecell\Sms();
         $response = $sms->sendSingleSms('+6289680000000', 'Hallo World', 'AUTO');
@@ -170,10 +170,10 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testMultipleSmsThrow()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
-        \Wavecell\Config::$smsExpireInMinutes = WAVECELL_SMS_EXPIRED_IN_MINUTES;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
+        \Wavecell\Config::$smsExpireInMinutes = getenv('WAVECELL_SMS_EXPIRED_IN_MINUTES');
 
         $sms = new \Wavecell\Sms();
         $numbers = array('+6289680000000', '+6289680000001');
@@ -187,10 +187,10 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testMultipleSms()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
-        \Wavecell\Config::$smsExpireInMinutes = WAVECELL_SMS_EXPIRED_IN_MINUTES;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
+        \Wavecell\Config::$smsExpireInMinutes = getenv('WAVECELL_SMS_EXPIRED_IN_MINUTES');
 
         $sms = new \Wavecell\Sms();
         $numbers = array('+6289680000000', '+6289680000001');
@@ -211,10 +211,10 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testMultipleSmsEncodingThrow()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
-        \Wavecell\Config::$smsExpireInMinutes = WAVECELL_SMS_EXPIRED_IN_MINUTES;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
+        \Wavecell\Config::$smsExpireInMinutes = getenv('WAVECELL_SMS_EXPIRED_IN_MINUTES');
 
         $sms = new \Wavecell\Sms();
         $numbers = array('+6289680000000', '+6289680000001');
@@ -230,10 +230,10 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testMultipleSmsNoNumberThrow()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
-        \Wavecell\Config::$smsExpireInMinutes = WAVECELL_SMS_EXPIRED_IN_MINUTES;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
+        \Wavecell\Config::$smsExpireInMinutes = getenv('WAVECELL_SMS_EXPIRED_IN_MINUTES');
 
         $sms = new \Wavecell\Sms();
         $response = $sms->sendMultipleSms('Hallo World', '+6289680000001', '');
@@ -248,9 +248,9 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testSendOtpSmsThrow()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
 
         $sms = new \Wavecell\Sms();
         $response = $sms->sendOtpSms('+6289680000000');
@@ -263,9 +263,9 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testSendOtpSms()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
 
         $sms = new \Wavecell\Sms();
         $response = $sms->sendOtpSms('+6289680000000', false);
@@ -285,9 +285,9 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testVerifyOtpSmsThrow()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
 
         $sms = new \Wavecell\Sms();
         $response = $sms->verifyOtpSms('683cc08a-bf70-e911-8145-02d9baaa9e6f', '908273');
@@ -300,9 +300,9 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     public function testVerifyOtpSms()
     {
         \Wavecell\Config::$resendInterval = 120;
-        \Wavecell\Config::$subAccountId = WAVECELL_SUB_ACCOUNT_ID;
-        \Wavecell\Config::$secretKey = WAVECELL_SECRET_KEY;
-        \Wavecell\Config::$smsFrom = WAVECELL_SMS_FROM;
+        \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
+        \Wavecell\Config::$secretKey = getenv('WAVECELL_SECRET_KEY');
+        \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
 
         $sms = new \Wavecell\Sms();
         $response = $sms->verifyOtpSms('683cc08a-bf70-e911-8145-02d9baaa9e6f', '908273', false);
