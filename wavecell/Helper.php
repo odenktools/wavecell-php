@@ -49,19 +49,4 @@ class Helper
         $fmt = $date->format('Y-m-d\TH:i:s.u\Z');
         return $fmt;
     }
-
-    /**
-     * Validate Array.
-     *
-     * @param array $destinationNumber
-     * @return bool
-     */
-    public static function validateArray($destinationNumber = [])
-    {
-        if (empty($destinationNumber)) {
-            return false;
-        }
-
-        return true;
-    }
 }

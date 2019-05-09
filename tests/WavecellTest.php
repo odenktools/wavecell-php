@@ -82,7 +82,7 @@ class WavecellTest extends PHPUnit_Framework_TestCase
         \Wavecell\Config::$smsFrom = getenv('WAVECELL_SMS_FROM');
 
         $sms = new \Wavecell\Sms();
-        $response = $sms->sendSingleSms('+6289680000000', 'Hallo World', 'AUTO', true);
+        $response = $sms->sendSingleSms('+6289680000000', 'Hallo World', 'AUTO');
         $this->assertEquals($response->getStatusCode(), 401);
     }
 
@@ -223,11 +223,11 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test fail send multiple sms with throwing error.
+     * Test fail send multiple sms.
      *
      * @expectedException \Wavecell\HttpException
      */
-    public function testMultipleSmsNoNumberThrow()
+    public function testMultipleSmsEmptyDestinationThrow()
     {
         \Wavecell\Config::$resendInterval = 120;
         \Wavecell\Config::$subAccountId = getenv('WAVECELL_SUB_ACCOUNT_ID');
@@ -236,7 +236,8 @@ class WavecellTest extends PHPUnit_Framework_TestCase
         \Wavecell\Config::$smsExpireInMinutes = getenv('WAVECELL_SMS_EXPIRED_IN_MINUTES');
 
         $sms = new \Wavecell\Sms();
-        $response = $sms->sendMultipleSms('Hallo World', '+6289680000001', '');
+        $numbers = array();
+        $response = $sms->sendMultipleSms('Hallo World', $numbers, '');
         $this->assertEquals($response->getStatusCode(), 401);
     }
 

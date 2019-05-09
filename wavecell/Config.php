@@ -29,7 +29,8 @@ class Config
 
     /**
      * be used to personalized the content of your message template with your product name or brand name.
-     * @var $smsFrom string
+     *
+     * @var string
      */
     public static $smsFrom;
 

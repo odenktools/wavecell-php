@@ -24,7 +24,7 @@ class Sms implements SmsInterface
     private $response;
 
     /**
-     * Curl Options.
+     * The Array of Curl Options.
      *
      * @var array
      */
@@ -77,9 +77,13 @@ class Sms implements SmsInterface
         } catch (RequestException $exception) {
             $this->response = $exception->getResponse();
             if ($throws) {
-                $this->handleError();
+                $body = (string)$this->response->getBody();
+                $code = (int)$this->response->getStatusCode();
+                $content = json_decode($body);
+                throw new HttpException(isset($content->message) ? $content->message : 'Request not processed.', $code);
+            } else {
+                return $this->response;
             }
-            return $this->response;
         }
         return (string)$this->response->getBody();
     }
@@ -87,14 +91,14 @@ class Sms implements SmsInterface
     /**
      * {@inheritdoc}
      */
-    public function sendMultipleSms($smsText, $destinationNumber = [], $smsEncoding = 'AUTO', $throws = true)
+    public function sendMultipleSms($smsText, array $destinationNumber = [], $smsEncoding = 'AUTO', $throws = true)
     {
         try {
             if ($smsEncoding === '') {
                 $smsEncoding = 'AUTO';
             }
-            if (!Helper::validateArray($destinationNumber)) {
-                throw new HttpException('Parameter must Array.');
+            if (empty($destinationNumber)) {
+                throw new HttpException('Destination must not empty.');
             }
             $url = Config::getBaseUrl() . '/sms/v1/' . Config::$subAccountId . '/single';
             $guzzleClient = new Client();
@@ -130,9 +134,13 @@ class Sms implements SmsInterface
         } catch (RequestException $exception) {
             $this->response = $exception->getResponse();
             if ($throws) {
-                $this->handleError();
+                $body = (string)$this->response->getBody();
+                $code = (int)$this->response->getStatusCode();
+                $content = json_decode($body);
+                throw new HttpException(isset($content->message) ? $content->message : 'Request not processed.', $code);
+            } else {
+                return $this->response;
             }
-            return $this->response;
         }
         return (string)$this->response->getBody();
     }
@@ -165,9 +173,13 @@ class Sms implements SmsInterface
         } catch (RequestException $exception) {
             $this->response = $exception->getResponse();
             if ($throws) {
-                $this->handleError();
+                $body = (string)$this->response->getBody();
+                $code = (int)$this->response->getStatusCode();
+                $content = json_decode($body);
+                throw new HttpException(isset($content->message) ? $content->message : 'Request not processed.', $code);
+            } else {
+                return $this->response;
             }
-            return $this->response;
         }
         return (string)$this->response->getBody();
     }
@@ -191,25 +203,18 @@ class Sms implements SmsInterface
         } catch (RequestException $exception) {
             $this->response = $exception->getResponse();
             if ($throws) {
-                $this->handleError();
+                $body = (string)$this->response->getBody();
+                $code = (int)$this->response->getStatusCode();
+                $content = json_decode($body);
+                throw new HttpException(isset($content->message) ? $content->message : 'Request not processed.', $code);
+            } else {
+                return $this->response;
             }
-            return $this->response;
         }
         $data = json_decode($this->response->getBody());
         if (strtoupper($data->status) !== 'VERIFIED') {
             throw new HttpException('Error verifiying code.', 400);
         }
         return (string)$this->response->getBody();
-    }
-
-    /**
-     * @throws HttpException
-     */
-    protected function handleError()
-    {
-        $body = (string)$this->response->getBody();
-        $code = (int)$this->response->getStatusCode();
-        $content = json_decode($body);
-        throw new HttpException(isset($content->message) ? $content->message : 'Request not processed.', $code);
     }
 }

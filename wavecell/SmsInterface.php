@@ -41,7 +41,7 @@ interface SmsInterface
      * @return \Psr\Http\Message\ResponseInterface|mixed
      * @throws \Wavecell\HttpException
      */
-    public function sendMultipleSms($smsText, $destinationNumber = [], $smsEncoding = 'AUTO', $throws = true);
+    public function sendMultipleSms($smsText, array $destinationNumber = [], $smsEncoding = 'AUTO', $throws = true);
 
     /**
      * Send OTP to Client.
