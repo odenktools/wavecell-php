@@ -1,23 +1,22 @@
 <?php
 
-/**
- * Helper.
- * {{ DESKRIPSI APLIKASI }}.
- *
- * @author     Odenktools
- * @license    MIT
- * @package    Wavecell
- * @copyright  (c) 2019, PerluApps Technology
- */
-
 namespace Wavecell;
 
+use Wavecell\Config;
+
+/**
+ * Wavecell Helper.
+ *
+ * @author     Pribumi Technology
+ * @license    MIT
+ * @copyright  (c) 2019, Pribumi Technology
+ */
 class Helper
 {
     /**
      * Generate a more truly "random" alpha-numeric string.
      *
-     * @param  int $length
+     * @param int $length how long char will generate
      * @return string
      * @throws \Exception;
      */
@@ -38,13 +37,14 @@ class Helper
 
     /**
      * Generate ISO8601 Time.
-     * @param int $minutes . Add Minutes from now
+     *
+     * @param int $minutes Add Minutes from now
      * @return string
      */
     public static function generateExpired($minutes = 60)
     {
-        $date = \Carbon\Carbon::now(\Wavecell\Config::$timeZone);
-        date_default_timezone_set(\Wavecell\Config::$timeZone);
+        $date = \Carbon\Carbon::now(Config::$timeZone);
+        date_default_timezone_set(Config::$timeZone);
         $date->addMinutes($minutes);
         $fmt = $date->format('Y-m-d\TH:i:s.u\Z');
         return $fmt;
@@ -55,13 +55,9 @@ class Helper
      *
      * @param array $destinationNumber
      * @return bool
-     * @throws \Exception
      */
     public static function validateArray($destinationNumber = [])
     {
-        if (!is_array($destinationNumber)) {
-            return false;
-        }
         if (empty($destinationNumber)) {
             return false;
         }

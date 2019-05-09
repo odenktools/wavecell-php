@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/odenktools/wavecell-php.svg?branch=master)](https://travis-ci.org/odenktools/wavecell-php)
 [![codecov](https://codecov.io/gh/odenktools/wavecell-php/branch/master/graph/badge.svg)](https://codecov.io/gh/odenktools/wavecell-php)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/odenktools/wavecell-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/odenktools/wavecell-php/?branch=master)
 
 Wavecell SMS PHP API Library was created by and is maintained by [Odenktools](https://github.com/odenktools).
 
