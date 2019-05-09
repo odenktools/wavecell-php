@@ -49,26 +49,7 @@ class WavecellTest extends PHPUnit_Framework_TestCase
     {
         $this->assertNotEquals(\Wavecell\Helper::generateExpired(), '2019-05-08T12:38:41.251939Z');
     }
-
-    public function testValidateArr()
-    {
-        $wave = $this->getMockForAbstractClass('\Wavecell\Helper');
-        $arr = array();
-        $settings = self::invokeMethod($wave, 'validateArray', array($arr));
-        $this->assertFalse($settings);
-    }
-
-    public function testValidateArr2()
-    {
-        $wave = $this->getMockForAbstractClass('\Wavecell\Helper');
-        $settings = self::invokeMethod(
-            $wave,
-            'validateArray',
-            array('+6289680000000', '+6289680000001')
-        );
-        $this->assertFalse($settings);
-    }
-
+    
     /**
      * Test fail send single sms.
      *
