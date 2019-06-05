@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/odenktools/wavecell-php.svg?branch=master)](https://travis-ci.org/odenktools/wavecell-php)
 [![codecov](https://codecov.io/gh/odenktools/wavecell-php/branch/master/graph/badge.svg)](https://codecov.io/gh/odenktools/wavecell-php)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/odenktools/wavecell-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/odenktools/wavecell-php/?branch=master)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fodenktools%2Fwavecell-php.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fodenktools%2Fwavecell-php?ref=badge_shield)
 
 Wavecell SMS PHP API Library was created by and is maintained by [Odenktools](https://github.com/odenktools).
 
@@ -341,3 +342,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fodenktools%2Fwavecell-php.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fodenktools%2Fwavecell-php?ref=badge_large)
