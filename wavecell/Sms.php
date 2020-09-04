@@ -8,6 +8,7 @@ use Wavecell\Config;
 use Wavecell\Helper;
 use Wavecell\HttpException;
 use Wavecell\SmsInterface;
+use Exception;
 
 /**
  * Wavecell SMS REST API Library.
@@ -151,15 +152,37 @@ class Sms implements SmsInterface
     public function sendOtpSms($destination, $throws = true)
     {
         try {
-            $url = Config::getBaseUrl() . '/verify/v1/' . Config::$subAccountId;
+            $url = Config::getBaseUrl() . '/verify/v2/' . Config::$subAccountId;
             $guzzleClient = new Client();
             $body = array();
             $body['country'] = Config::$country;
             $body['destination'] = $destination;
-            $body['productName'] = Config::$smsFrom;
+            $body['brand'] = Config::$otpBrand;
             $body['codeLength'] = Config::$otpCodeLength;
             $body['codeValidity'] = Config::$otpCodeValidity;
             $body['resendingInterval'] = Config::$resendInterval;
+            switch(Config::$otpChannel) {
+                case "sms":
+                    if (isset(Config::$otpSmsSource)) {
+                        $body['sms']['source'] = Config::$otpSmsSource; 
+                    } else { 
+                        $body['sms']['source'] = Config::$smsFrom; 
+                    }
+                    $body['sms']['encoding'] = Config::$otpSmsEncoding;
+                    break;
+                case "call":
+                    $body['call']['source'] = Config::$otpCallSource;
+                    $body['call']['speed'] = Config::$otpCallSpeed;
+                    $body['call']['repetition'] = Config::$otpCallRepetition;
+                	if (isset(Config::$otpCallVoiceProfile)) { 
+                	    $body['call']['voiceProfile'] = Config::$otpCallVoiceProfile;
+                	}
+                	break;
+                default:
+                    throw new Exception(PHP_EOL. "***You must specify an OTP channel type***" . PHP_EOL);
+                    break;
+            }
+            $body['channel'] = Config::$otpChannel;
             uksort($body, 'strcmp');
             $curls = array_merge(Config::$curlOptions, $this->curlOpts);
             $this->response = $guzzleClient->post($url, [
@@ -180,6 +203,9 @@ class Sms implements SmsInterface
             } else {
                 return $this->response;
             }
+        } catch (Exception $exception) {
+            print $exception;
+            return PHP_EOL;
         }
         return (string)$this->response->getBody();
     }
@@ -190,7 +216,7 @@ class Sms implements SmsInterface
     public function verifyOtpSms($uid, $code, $throws = true)
     {
         try {
-            $url = Config::getBaseUrl() . "/verify/v1/" . Config::$subAccountId . "/$uid?code=$code";
+            $url = Config::getBaseUrl() . "/verify/v2/" . Config::$subAccountId . "/$uid?code=$code";
             $guzzleClient = new Client();
             $curls = array_merge(Config::$curlOptions, $this->curlOpts);
             $this->response = $guzzleClient->get($url, [
