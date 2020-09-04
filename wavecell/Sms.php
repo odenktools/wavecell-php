@@ -216,7 +216,7 @@ class Sms implements SmsInterface
     public function verifyOtpSms($uid, $code, $throws = true)
     {
         try {
-            $url = Config::getBaseUrl() . "/verify/v1/" . Config::$subAccountId . "/$uid?code=$code";
+            $url = Config::getBaseUrl() . "/verify/v2/" . Config::$subAccountId . "/$uid?code=$code";
             $guzzleClient = new Client();
             $curls = array_merge(Config::$curlOptions, $this->curlOpts);
             $this->response = $guzzleClient->get($url, [
