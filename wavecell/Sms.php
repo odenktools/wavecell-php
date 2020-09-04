@@ -164,15 +164,15 @@ class Sms implements SmsInterface
             switch(Config::$otpChannel) {
                 case "sms":
                     if (isset(Config::$optSmsSource)) {
-                        $body['sms']['source'] = Config::$optSmsSource; 
+                        $body['sms']['source'] = Config::$otpSmsSource; 
                     } else { 
                         $body['sms']['source'] = Config::$smsFrom; 
                     }
                     $body['sms']['encoding'] = Config::$otpSmsEncoding;
                     break;
                 case "call":
-                    $body['call']['source'] = Config::$optCallSource;
-                    $body['call']['speed'] = Config::$optCallSpeed;
+                    $body['call']['source'] = Config::$otpCallSource;
+                    $body['call']['speed'] = Config::$otpCallSpeed;
                     $body['call']['repetition'] = Config::$otpCallRepetition;
                 	if (isset(Config::$otpCallVoiceProfile)) { 
                 	    $body['call']['voiceProfile'] = Config::$otpCallVoiceProfile;
