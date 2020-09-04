@@ -163,7 +163,7 @@ class Sms implements SmsInterface
             $body['resendingInterval'] = Config::$resendInterval;
             switch(Config::$otpChannel) {
                 case "sms":
-                    if (isset(Config::$optSmsSource)) {
+                    if (isset(Config::$otpSmsSource)) {
                         $body['sms']['source'] = Config::$otpSmsSource; 
                     } else { 
                         $body['sms']['source'] = Config::$smsFrom; 
