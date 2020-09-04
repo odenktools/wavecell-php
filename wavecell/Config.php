@@ -94,7 +94,7 @@ class Config
      *
      * @var string
      */
-    public static $optSmsSource;
+    public static $otpSmsSource;
     
     /**
      * This parameter is not mandatory.
